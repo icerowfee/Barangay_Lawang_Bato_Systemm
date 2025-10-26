@@ -270,7 +270,7 @@
         </div>
 
 
-        <!-- Rejection Modal -->
+        <!-- Rejection Modal OKAY ITO-->
         <livewire:show-job-referral-admin-rejection-modal
             activeTab="{{ session('activeTab', 'new-account-request-tab') }}" />
 
