@@ -1,0 +1,7 @@
+{
+    "wrapAttributes": "auto",
+    "wrapLineLength": 120,
+    "endWithNewline": false,
+    "indentSize": 4,
+    "wrapAttributesMinAttrs": 999
+}

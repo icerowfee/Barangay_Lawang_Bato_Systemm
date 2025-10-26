@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer utilities {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+
+textarea {
+  resize: none;
+}
+
+.normal-dropdown +  .ts-wrapper .ts-control {
+    height: 42px; /* Adjusted height to match the original design */
+    border: 1px solid #9ca3af ; /* Border color */
+    border-radius: 0.25rem; /* Border radius */
+    background-color: white;
+}
+
+
+.ts-control {
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+
+
+.ts-dropdown {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin-top: 0.25rem;
+    max-height: 150px;
+    overflow-y: hidden;
+    z-index: 999;
+}
+
+.ts-dropdown .option {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.ts-dropdown .option:hover {
+    background-color: #f3f4f6;
+}
