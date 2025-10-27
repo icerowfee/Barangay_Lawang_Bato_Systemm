@@ -1,5 +1,5 @@
 <!-- Archive Modal -->
-<div x-cloak x-show="openArchive || activeTab === 'job-referral-request-archive-tab'"
+<div wire:poll x-cloak x-show="openArchive || activeTab === 'job-referral-request-archive-tab'"
     class="fixed inset-0 bg-gray-300 bg-opacity-50 flex justify-center items-center">
     <div class="relative bg-white rounded-lg shadow-md w-3/4 min-h-[77%] overflow-hidden">
         <div class="relative bg-[#0F5192] text-white px-4 py-4 flex-1 items-center">

@@ -283,7 +283,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4">{{ $approvedUserAccountRequests->links() }}
+            <div class="mt-4">{{ $approvedUserAccountRequests->links() }}</div>
         @endif
     </div>
 </div>

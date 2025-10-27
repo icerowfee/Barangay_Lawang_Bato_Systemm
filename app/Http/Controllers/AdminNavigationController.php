@@ -280,7 +280,7 @@ class AdminNavigationController extends Controller
                 // Define your queries as named keys
                 $queries = [
                     'jobAccountQuery' => User::query(),
-                    'jobReferralQuery' => JobReferralRequest::query()
+                    'jobReferralQuery' => Applicant::query()
                 ];
 
                 foreach ($queries as $key => $query) {

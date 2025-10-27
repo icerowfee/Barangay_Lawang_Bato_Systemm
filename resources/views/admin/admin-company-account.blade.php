@@ -39,14 +39,14 @@
 
         selectedRequest = null;
 
-        showApprovedAccountRequestData: false,
-        showNewAccountRequestData: false,
-        showArchivedCompanyAccountsData: false,
+        showApprovedAccountRequestData = false;
+        showNewAccountRequestData = false;
+        showArchivedCompanyAccountsData = false;
 
-        showRejectionModal: false,
+        showRejectionModal = false;
 
-        successMessage: '',
-        errorMessage: '',
+        successMessage = '';
+        errorMessage = '';
         
         showRejectionModal = false;
         "
@@ -57,16 +57,16 @@
         
         selectedRequest = null;
 
-        showApprovedAccountRequestData: false,
-        showNewAccountRequestData: false,
-        showArchivedCompanyAccountsData: false,
+        showApprovedAccountRequestData = false;
+        showNewAccountRequestData = false;
+        showArchivedCompanyAccountsData = false;
 
-        showRejectionModal: false,
+        showRejectionModal = false;
 
-        successMessage: '',
-        errorMessage: '',
+        successMessage = '';
+        errorMessage = '';
         
-        showRejectionModal = false;     
+        showRejectionModal = false;   
 ">
 
     <!-- Sidebar -->
@@ -90,12 +90,12 @@
 
                 <livewire:show-approved-company-accounts />
 
+                <livewire:show-pending-company-accounts />
+
 
             </div>
 
-            <livewire:show-pending-company-accounts />
 
-        </div>
 
         <!-- Archived Requests Button -->
         <div>

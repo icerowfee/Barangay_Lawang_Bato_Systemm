@@ -290,7 +290,7 @@ class AdminController extends Controller
     {
         $newApplicationRequests = Applicant::with('user', 'jobListing')->where('status', 'Applied')->oldest()->paginate(10);
 
-        $approvedApplicationRequests = Applicant::with('user')->where('status', 'Shortlisted')->oldest()->paginate(10);
+        // $approvedApplicationRequests = Applicant::with('user')->where('status', 'Shortlisted')->oldest()->paginate(10);
 
         $archivedApplicationRequests = Applicant::with('user')->whereIn('status', ['Rejected', 'Rejected by Company', 'Accepted by Company'])->oldest()->paginate(10);
 
@@ -332,7 +332,7 @@ class AdminController extends Controller
 
         $approvedApplicationRequests = $query->where('applicants.status', 'Shortlisted')->oldest()->paginate(10);
 
-        return view('admin/admin-job-referral', compact('newApplicationRequests', 'approvedApplicationRequests', 'archivedApplicationRequests', 'sortBy', 'sortDir', 'search'));
+        return view('admin/admin-job-referral', compact('newApplicationRequests', 'archivedApplicationRequests', 'sortBy', 'sortDir', 'search'));
     }
 
     public function showAccountRequests(Request $request)
@@ -402,12 +402,12 @@ class AdminController extends Controller
         //     return $item;
         // });
 
-        $archivedCompanyAccounts = Company::whereIn('status', ['Deactivated', 'Rejected'])->oldest()->paginate(10)
-            ->through(function ($item) {
-                $item->formatted_date = Carbon::parse($item->created_at)->format('F d, Y'); // e.g., July 29, 2025
-                $item->formatted_time = Carbon::parse($item->created_at)->format('h:i A'); // e.g., 01:35 PM
-                return $item;
-            });
+        // $archivedCompanyAccounts = Company::whereIn('status', ['Deactivated', 'Rejected'])->oldest()->paginate(10)
+        //     ->through(function ($item) {
+        //         $item->formatted_date = Carbon::parse($item->created_at)->format('F d, Y'); // e.g., July 29, 2025
+        //         $item->formatted_time = Carbon::parse($item->created_at)->format('h:i A'); // e.g., 01:35 PM
+        //         return $item;
+        //     });
 
 
         // Initialize the main query builder
@@ -439,7 +439,7 @@ class AdminController extends Controller
 
 
         // Return the view with the necessary data
-        return view('admin/admin-company-account', compact('newCompanyAccountRequests', 'archivedCompanyAccounts'));
+        return view('admin/admin-company-account', compact('newCompanyAccountRequests'));
     }
 
     public function showJobListings(Request $request)
@@ -528,6 +528,14 @@ class AdminController extends Controller
         $jobListing->save();
 
         return redirect()->back()->with('success', 'Job Listing Closed Successfully.')->with('activeTab', $request?->activeTab);
+    }
+
+    public function deleteJobListing(Request $request)
+    {
+        $jobListing = JobListing::find($request->id);
+        $jobListing->delete();
+
+        return redirect()->back()->with('success', 'Job Listing Deleted Successfully.')->with('activeTab', $request?->activeTab);
     }
 
     public function archiveCompanyAccount(Request $request)

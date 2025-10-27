@@ -435,48 +435,53 @@
                 <!-- Job Referral Report Cards -->
                 <h2 class="text-xl font-semibold mb-4 text-gray-700">Job Referral Reports</h2>
                 <div class="mb-6 flex flex-col gap-4">
-                    <div class="grid grid-cols-4 gap-4">
+                    <div class="grid grid-cols-5 gap-4">
                         <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Total Job Referred</h3>
-                            <p class="text-2xl font-bold text-blue-600 mt-2">
-                                {{ $jobReferralRequests->where('status', 'Referred')->count() }}</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Pending Job Referral Requests</h3>
-                            <p class="text-2xl font-bold text-yellow-600 mt-2">
-                                {{ $jobReferralRequests->where('status', 'Pending')->count() }}</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Processing Job Referral Requests</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Applicants Accepted by Company</h3>
                             <p class="text-2xl font-bold text-green-600 mt-2">
-                                {{ $jobReferralRequests->where('status', 'Processing')->count() }}</p>
+                                {{ $jobReferralRequests->where('status', 'Accepted by Company')->count() }}</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Rejected Job Referral Requests</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Referred Applicants</h3>
+                            <p class="text-2xl font-bold text-blue-600 mt-2">
+                                {{ $jobReferralRequests->where('status', 'Shortlisted')->count() }}</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="text-lg font-medium text-gray-700">Pending Applicant Requests</h3>
+                            <p class="text-2xl font-bold text-orange-600 mt-2">
+                                {{ $jobReferralRequests->where('status', 'Applied')->count() }}</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="text-lg font-medium text-gray-700">Rejected Applicant Requests</h3>
                             <p class="text-2xl font-bold text-red-600 mt-2">
-                                {{ $jobReferralRequests->where('status', 'Rejected')->count() + $jobReferralRequests->where('status', 'Cancelled')->count() }}
+                                {{ $jobReferralRequests->where('status', 'Rejected')->count() }}</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="text-lg font-medium text-gray-700">Applicants Rejected by Company</h3>
+                            <p class="text-2xl font-bold text-yellow-600 mt-2">
+                                {{ $jobReferralRequests->where('status', 'Rejected by Company')->count() }}
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-4">
+                    <div class="grid grid-cols-3 gap-4">
                         <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Active Job Accounts</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Active User Accounts</h3>
                             <p class="text-2xl font-bold text-blue-600 mt-2">
                                 {{ $jobAccounts->where('status', 'Active')->count() }}</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Pending Job Accounts</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Pending User Accounts</h3>
                             <p class="text-2xl font-bold text-yellow-600 mt-2">
                                 {{ $jobAccounts->where('status', 'Pending')->count() }}</p>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
+                        {{-- <div class="bg-white p-4 rounded-lg shadow">
                             <h3 class="text-lg font-medium text-gray-700">Accepted Job Accounts</h3>
                             <p class="text-2xl font-bold text-green-600 mt-2">
                                 {{ $jobAccounts->where('status', 'Approved')->count() }}</p>
-                        </div>
+                        </div> --}}
                         <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="text-lg font-medium text-gray-700">Rejected Job Accounts</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Rejected User Accounts</h3>
                             <p class="text-2xl font-bold text-red-600 mt-2">
                                 {{ $jobAccounts->where('status', 'Rejected')->count() }}</p>
                         </div>
@@ -487,7 +492,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
                     <!-- Admin Roles Pie Chart -->
                     <div class="bg-white p-6 rounded-lg shadow h-[350px] flex flex-col items-center justify-center">
-                        <h3 class="text-lg font-semibold mb-4">Job Accounts Status</h3>
+                        <h3 class="text-lg font-semibold mb-4">User Accounts Status</h3>
                         <div class="w-full h-[250px] rounded-lg flex items-center justify-center text-gray-400">
                             <canvas id="jobAccountStatusPieChart"></canvas>
                         </div>
@@ -512,18 +517,35 @@
                     new Chart(jobAccountStatusPieChart, {
                         type: 'pie',
                         data: {
-                            labels: ['Active', 'Pending', 'Accepted', 'Rejected'],
+                            labels: ['Active', 'Pending', 'Rejected'],
                             datasets: [{
                                 label: 'Job Accounts',
                                 data: [
                                     {{ $jobAccounts->where('status', 'Active')->count() }},
                                     {{ $jobAccounts->where('status', 'Pending')->count() }},
-                                    {{ $jobAccounts->where('status', 'Approved')->count() }},
+                                    // {{ $jobAccounts->where('status', 'Approved')->count() }},
                                     {{ $jobAccounts->where('status', 'Rejected')->count() }}
                                 ],
                                 backgroundColor: ['#1d4ed8', '#ea580c', '#16a34a', '#dc2626'],
                                 borderWidth: 1
                             }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                },
+                                datalabels: {
+                                    color: '#ffff',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 13
+                                    },
+                                    formatter: (value) => value // show the number directly
+                                }
+                            }
                         }
                     });
 
@@ -532,18 +554,36 @@
                     new Chart(jobReferralPieChart, {
                         type: 'pie',
                         data: {
-                            labels: ['Referred', 'Pending', 'Accepted', 'Rejected'],
+                            labels: ['Accepted by Company', 'Referred', 'Pending', 'Rejected by Admim', 'Rejected by Company'],
                             datasets: [{
                                 label: 'Job Accounts',
                                 data: [
-                                    {{ $jobReferralRequests->where('status', 'Referred')->count() }},
-                                    {{ $jobReferralRequests->where('status', 'Pending')->count() }},
-                                    {{ $jobReferralRequests->where('status', 'Approved')->count() }},
-                                    {{ $jobReferralRequests->where('status', 'Rejected')->count() }}
+                                    {{ $jobReferralRequests->where('status', 'Accepted by Company')->count() }},
+                                    {{ $jobReferralRequests->where('status', 'Shortlisted')->count() }},
+                                    {{ $jobReferralRequests->where('status', 'Applied')->count() }},
+                                    {{ $jobReferralRequests->where('status', 'Rejected')->count() }},
+                                    {{ $jobReferralRequests->where('status', 'Rejected by Company')->count() }}
                                 ],
-                                backgroundColor: ['#1d4ed8', '#ea580c', '#16a34a', '#dc2626'],
+                                backgroundColor: ['#16a34a', '#1d4ed8', '#ea580c', '#dc2626', '#ca8a04'],
                                 borderWidth: 1
                             }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                },
+                                datalabels: {
+                                    color: '#ffff',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 13
+                                    },
+                                    formatter: (value) => value // show the number directly
+                                }
+                            }
                         }
                     });
 

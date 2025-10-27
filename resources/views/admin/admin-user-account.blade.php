@@ -15,7 +15,7 @@
     selectedRequest: null,
 
     viewUploadedID: false,
-    
+
     showActiveAccountsData: false,
     showNewAccountRequestData: false,
 
@@ -80,9 +80,10 @@
 
                 <livewire:show-approved-user-accounts>
 
+                <livewire:show-pending-user-accounts>
+
             </div>
 
-            <livewire:show-pending-user-accounts>
 
                 {{-- <div class="right-10 flex justify-end w-full p-4 z-0" x-data="{openArchive: false, showArchivedRequests: false}">
             <div class="space-x-4">
@@ -270,7 +271,7 @@
         </div>
 
 
-        <!-- Rejection Modal OKAY ITO-->
+        <!-- Rejection Modal -->
         <livewire:show-job-referral-admin-rejection-modal
             activeTab="{{ session('activeTab', 'new-account-request-tab') }}" />
 

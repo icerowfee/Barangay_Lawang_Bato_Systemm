@@ -145,8 +145,8 @@ Route::put('/admin-job-referral-request/job.referral.request.referred', [AdminCo
 
 Route::put('/admin-job-listing-management/job.listing.approved', [AdminController::class, 'approveJobListing'])->name('approve.job.listing');
 Route::put('/admin-job-listing-management/job.listing.rejected', [AdminController::class, 'rejectJobListing'])->name('reject.job.listing');
-// Route::put('/admin-job-listing-management/job.listing.close', [AdminController::class, 'closeJobListing'])->name('close.job.listing');
-// Route::put('/admin-job-listing-management/job.listing.delete', [AdminController::class, 'deleteJobListing'])->name('delete.job.listing');
+Route::put('/admin-job-listing-management/job.listing.close', [AdminController::class, 'closeJobListing'])->name('close.job.listing');
+Route::put('/admin-job-listing-management/job.listing.delete', [AdminController::class, 'deleteJobListing'])->name('delete.job.listing');
 
 
 

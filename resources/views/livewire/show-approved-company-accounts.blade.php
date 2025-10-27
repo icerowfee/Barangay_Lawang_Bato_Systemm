@@ -1,6 +1,7 @@
 <div class="p-4 flex-1">
     <div class="flex justify-between mb-4">
         <h2 class="text-2xl font-bold text-center self-center">Active Company Accounts</h2>
+
         <div class="flex gap-4 items-center">
             {{-- filters --}}
             <div class="flex gap-4 items-center">
@@ -109,19 +110,20 @@
                                 </td>
                                 <td class="border-b p-3 truncate max-w-[150px]">{{ $approvedRequest->company_name }}
                                 </td>
-                                <td class="border-b p-3 ">{{ $approvedRequest->business_type }}</td>
+                                <td class="border-b p-3">{{ $approvedRequest->business_type }}</td>
                                 <td class="border-b p-3 truncate max-w-[250px]">{{ $approvedRequest->barangay }},
                                     {{ $approvedRequest->city }}
                                 </td>
                                 <td class="border-b p-3 truncate max-w-[150px]">{{ $approvedRequest->contact_person_name }}
                                 </td>
-                                <td class="border-b p-3 ">{{ $approvedRequest->formatted_date }}</td>
-                                <td class="border-b p-3 ">{{ $approvedRequest->formatted_time }}</td>
-                                <td class="border-b p-3 ">
-                                    <span class="text-white text-center font-medium px-3 py-2 rounded-md"
-                                        :class="selectedRequest?.status === 'Active' ? 'bg-green-500' :
-                                            (selectedRequest?.status === 'Rejected' ? 'bg-red-500' :
-                                                'bg-yellow-500')">
+                                <td class="border-b p-3">{{ $approvedRequest->formatted_date }}</td>
+                                <td class="border-b p-3">{{ $approvedRequest->formatted_time }}</td>
+                                <td class="border-b p-3">
+                                    <span class="text-white text-center font-medium px-3 py-2 rounded-md
+                                    {{ $approvedRequest->status === 'Verified'
+                                                    ? 'bg-green-500'
+                                                    : ($approvedRequest->status === 'Rejected'
+                                                        ? 'bg-red-500' : 'bg-yellow-500') }}">
                                         {{ $approvedRequest->status ?? 'Pending' }}
                                     </span>
                                 </td>
@@ -296,7 +298,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4">{{ $approvedCompanyAccountRequests->links() }}
+            <div class="mt-4">{{ $approvedCompanyAccountRequests->links() }}</div>
         @endif
     </div>
 </div>

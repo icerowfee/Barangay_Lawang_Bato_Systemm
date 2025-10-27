@@ -480,11 +480,11 @@
                         <h2 class=" text-lg text-black text-center mb-2"><strong>Company Accounts</strong></h2>
                         <div class="grid grid-cols-3 items-center justify-between">
                             <div class="flex flex-col items-center">
-                                <h2 class="text-sm text-gray-700 pb-2"><strong>Active</strong></h2>
+                                <h2 class="text-sm text-gray-700 pb-2"><strong>Verified</strong></h2>
                                 <div
                                     class="flex items-center justify-center bg-blue-600 text-white rounded-md px-2 min-w-16 w-fit h-10">
                                     <p class="text-2xl font-semibold">
-                                        {{ $jobAccounts->where('status', 'Active')->count() }}</p>
+                                        {{ $companyAccounts->where('status', 'Verified')->count() }}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col items-center">
@@ -492,7 +492,7 @@
                                 <div
                                     class="flex items-center justify-center bg-orange-600 text-white rounded-md px-2 min-w-16 w-fit h-10">
                                     <p class="text-2xl font-semibold">
-                                        {{ $jobAccounts->where('status', 'Pending')->count() }}</p>
+                                        {{ $companyAccounts->where('status', 'Pending')->count() }}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col items-center">
@@ -500,7 +500,7 @@
                                 <div
                                     class="flex items-center justify-center bg-red-600 text-white rounded-md px-2 min-w-16 w-fit h-10">
                                     <p class="text-2xl font-semibold">
-                                        {{ $jobAccounts->where('status', 'Rejected')->count() }}</p>
+                                        {{ $companyAccounts->where('status', 'Rejected')->count() }}</p>
                                 </div>
                             </div>
                         </div>
@@ -764,7 +764,7 @@
                                     formatter: (value) => value // show the number directly
                                 }
                             }
-                        },
+                        }
                     });
 
                     // Bar Chart
